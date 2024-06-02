@@ -10,7 +10,33 @@ function kenaRazia(date, data) {
       "Tomang Raya"
     ];
   
-    const result = [];
+    const result = [
+        for (let i = 0; i < data.length; i++) {
+      const vehicle = data[i];
+
+      if (vehicle.type === "Mobil") {
+        const platNumbers = vehicle.plat.match(/\d+/g).join("");
+        const lastDigit = parseInt(platNumbers[platNumbers.length - 1]);
+        const isPlatOdd = lastDigit % 2 !== 0;
+        
+        let violationCount = 0;
+        for (let j = 0; j < vehicle.rute.length; j++) {
+          if (restrictedRoutes.includes(vehicle.rute[j])) {
+            if ((isDateOdd && !isPlatOdd) || (!isDateOdd && isPlatOdd)) {
+              violationCount++;
+            }
+          }
+        }
+        
+        if (violationCount > 0) {
+          result.push({
+            name: vehicle.name,
+            tilang: violationCount
+          });
+        }
+      }
+    }
+    ];
 
     return result;
   }
