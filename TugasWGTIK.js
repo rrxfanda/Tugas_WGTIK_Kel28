@@ -10,8 +10,9 @@ function kenaRazia(date, data) {
       "Tomang Raya"
     ];
   
-    const result = [
-        for (let i = 0; i < data.length; i++) {
+    const result = [];
+        
+    for (let i = 0; i < data.length; i++) {
       const vehicle = data[i];
 
       if (vehicle.type === "Mobil") {
@@ -36,10 +37,10 @@ function kenaRazia(date, data) {
         }
       }
     }
-    ];
 
     return result;
   }
+
 console.log(
     kenaRazia(27, [
       {
